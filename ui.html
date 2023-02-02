@@ -1,0 +1,33 @@
+<div>
+  <button id="loadSvg">Copy SVG code</button>
+</div>
+<textarea
+  style="height: 100%; margin-top: 10px; font-size: 10px"
+  type="text"
+  id="currentSvg"
+></textarea>
+
+<script>
+  const currentSvg = document.getElementById("currentSvg");
+
+  onmessage = (event) => {
+    if (event.data.pluginMessage.type === "response:svg") {
+      currentSvg.value = event.data.pluginMessage.selection;
+    }
+  };
+  const updateUI = () => {
+    const size = currentSvg.scrollHeight;
+
+    parent.postMessage(
+      { pluginMessage: { type: "request:loadSvg", size } },
+      "*"
+    );
+  };
+
+  updateUI();
+  document.querySelector("button").onclick = function () {
+    document.querySelector("textarea").select();
+    document.execCommand("copy");
+    alert("Copied");
+  };
+</script>

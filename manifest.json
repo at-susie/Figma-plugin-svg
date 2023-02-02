@@ -1,0 +1,10 @@
+{
+  "name": "Test-SVGexport",
+  "id": "1203096947745353194",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}
