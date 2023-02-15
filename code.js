@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-figma.showUI(__html__);
+figma.showUI((__html__), { width: 480, height: 480, title: "SVG Generator" });
 figma.ui.onmessage = (event) => __awaiter(void 0, void 0, void 0, function* () {
     const selection = figma.currentPage.selection;
     if (event.type === "request:loadSvg") {
@@ -41,7 +41,10 @@ const getArtwork = (selected) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         return selected["0"].exportAsync({ format: "SVG", svgIdAttribute: true }).then((data) => {
             const defaultLabel = String.fromCharCode.apply(null, data);
-            return defaultLabel.replace(idLabel, "className=");
+            const svgString = defaultLabel.replace(idLabel, "class=").replace(/(class="[^"]*)_[0-9]*(")/g, "$1$2").replace(/(class="[^"]*?)\/(.*?")/g, (match, p1, p2) => {
+                return p1 + ' ' + p2.replace(/\//g, ' ');
+            });
+            return svgString;
         }).catch((e) => e);
     }
     catch (err) {
