@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 figma.showUI((__html__), { width: 480, height: 480, title: "SVG Generator" });
 figma.ui.onmessage = (event) => __awaiter(void 0, void 0, void 0, function* () {
     const selection = figma.currentPage.selection;
-    if (event.type === "request:loadSvg") {
+    if (event.type === "request:copySvg") {
         const imageObj = yield getArtwork(selection);
         figma.ui.postMessage({
             selection: imageObj || "",

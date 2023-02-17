@@ -6,7 +6,7 @@ figma.showUI(
 
 figma.ui.onmessage = async (event) => {
   const selection = figma.currentPage.selection;
-  if (event.type === "request:loadSvg") {
+  if (event.type === "request:copySvg") {
     const imageObj = await getArtwork(selection);
     figma.ui.postMessage({
       selection: imageObj || "",

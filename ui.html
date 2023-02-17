@@ -1,5 +1,25 @@
+<style>
+  #currentSvg {
+    width: 100%;
+    font-size: 13px !important;
+  }
+  #copySvg {
+    width: 100%;
+    border: none;
+    background-color: black;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: white;
+    transition: ease 0.1s;
+  }
+  #copySvg:hover {
+    background-color: rgb(19, 19, 19);
+    cursor: pointer;
+  }
+
+</style>
 <div>
-  <button id="loadSvg">Copy SVG code</button>
+  <button id="copySvg">Copy SVG code</button>
 </div>
 <textarea
   style="height: 100%; margin-top: 10px; font-size: 10px"
@@ -19,7 +39,7 @@
     const size = currentSvg.scrollHeight;
 
     parent.postMessage(
-      { pluginMessage: { type: "request:loadSvg", size } },
+      { pluginMessage: { type: "request:copySvg", size } },
       "*"
     );
   };
